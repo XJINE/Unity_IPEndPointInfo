@@ -20,7 +20,7 @@ public class IPEndPointInfo
         {
             if (this.ipEndPoint == null)
             {
-                this.ipEndPoint = new IPEndPoint(FindIPAddress(this.address), this.port);
+                this.ipEndPoint = new IPEndPoint(IPAddress.Parse(this.address), this.port);
             }
 
             return this.ipEndPoint;
@@ -28,25 +28,4 @@ public class IPEndPointInfo
     }
 
     #endregion Property
-
-    #region Method
-
-    public static IPAddress FindIPAddress(string hostname)
-    {
-        IPAddress[] addresses = Dns.GetHostAddresses(hostname);
-        IPAddress   address   = IPAddress.None;
-
-        for (var i = 0; i < addresses.Length; i++)
-        {
-            if (addresses[i].AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-            {
-                address = addresses[i];
-                break;
-            }
-        }
-
-        return address;
-    }
-
-    #endregion Method
 }
