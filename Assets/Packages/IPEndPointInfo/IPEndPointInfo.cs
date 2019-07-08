@@ -28,4 +28,16 @@ public class IPEndPointInfo
     }
 
     #endregion Property
+
+    #region Constructor
+
+    public IPEndPointInfo() { }
+
+    public IPEndPointInfo(string address, int port)
+    {
+        this.address = address;
+        this.port = port;
+    }
+
+    #endregion Constructor
 }
