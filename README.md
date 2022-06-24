@@ -1,14 +1,16 @@
 # Unity_IPEndPointInfo
 
-<img src="https://github.com/XJINE/Unity_IPEndPointInfo/blob/master/Screenshot.png" width="100%" height="auto" />
+<img src="https://github.com/XJINE/Unity_IPEndPointInfo/blob/main/Screenshot.png" width="100%" height="auto" />
 
 IPEndPoint wrapper to setup from Inspector.
 
-## Import to Your Project
+## Importing
 
-You can import this asset from UnityPackage.
+You can use Package Manager or import it directly.
 
-- [IPEndPointInfo.unitypackage](https://github.com/XJINE/Unity_IPEndPointInfo/blob/master/IPEndPointInfo.unitypackage)
+```
+https://github.com/XJINE/Unity_IPEndPointInfo.git?path=Assets/Packages/IPEndPointInfo
+```
 
 ## How to Use
 
@@ -18,18 +20,7 @@ The source is quite simple.
 ```csharp
 public string address;
 public int    port;
-protected IPEndPoint ipEndPoint;
-public IPEndPoint IPEndPoint
-{
-    get
-    {
-        if (this.ipEndPoint == null)
-        {
-            this.ipEndPoint = new IPEndPoint(IPAddress.Parse(this.address), this.port);
-        }
 
-        return this.ipEndPoint;
-    }
-}
-
+private IPEndPoint _ipEndPoint;
+public IPEndPoint IPEndPoint => _ipEndPoint ??= new IPEndPoint(IPAddress.Parse(address), port);
 ```

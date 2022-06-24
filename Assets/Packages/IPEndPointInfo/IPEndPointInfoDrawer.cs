@@ -12,15 +12,15 @@ public class IPEndPointInfoDrawer : PropertyDrawer
 
         position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
 
-        float height = position.height;
-        float width  = (position.width - 10) / 4;
+        var height = position.height;
+        var width  = (position.width - 10) / 4;
 
-        Rect addressLabelRect = new Rect(position.xMin,                  position.y, width, height);
-        Rect addressFieldRect = new Rect(position.xMin + width * 1,      position.y, width, height);
-        Rect portLabelRect    = new Rect(position.xMin + width * 2 + 10, position.y, width, height);
-        Rect portFieldRect    = new Rect(position.xMin + width * 3 + 10, position.y, width, height);
+        var addressLabelRect = new Rect(position.xMin,                  position.y, width, height);
+        var addressFieldRect = new Rect(position.xMin + width * 1,      position.y, width, height);
+        var portLabelRect    = new Rect(position.xMin + width * 2 + 10, position.y, width, height);
+        var portFieldRect    = new Rect(position.xMin + width * 3 + 10, position.y, width, height);
 
-        int prevIndentLevel = EditorGUI.indentLevel;
+        var prevIndentLevel = EditorGUI.indentLevel;
 
         EditorGUI.indentLevel = 0;
 

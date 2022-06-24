@@ -12,20 +12,9 @@ public class IPEndPointInfo
 
     #region Property
 
-    protected IPEndPoint ipEndPoint;
+    private IPEndPoint _ipEndPoint;
 
-    public IPEndPoint IPEndPoint
-    {
-        get
-        {
-            if (this.ipEndPoint == null)
-            {
-                this.ipEndPoint = new IPEndPoint(IPAddress.Parse(this.address), this.port);
-            }
-
-            return this.ipEndPoint;
-        }
-    }
+    public IPEndPoint IPEndPoint => _ipEndPoint ??= new IPEndPoint(IPAddress.Parse(address), port);
 
     #endregion Property
 
@@ -36,7 +25,7 @@ public class IPEndPointInfo
     public IPEndPointInfo(string address, int port)
     {
         this.address = address;
-        this.port = port;
+        this.port    = port;
     }
 
     #endregion Constructor
