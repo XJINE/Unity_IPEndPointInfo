@@ -18,9 +18,29 @@ Set ``address`` and ``port`` field. And get ``IPEndPoint`` from property.
 The source is quite simple.
 
 ```csharp
-public string address;
-public int    port;
+[SerializeField] private string address;
+[SerializeField] private int    port;
 
 private IPEndPoint _ipEndPoint;
+
+    public string Address
+    {
+        get => address;
+        set
+        {
+            address     = value;
+            _ipEndPoint = new IPEndPoint(IPAddress.Parse(address), port);
+        }
+    }
+    public int Port
+    {
+        get => port;
+        set
+        {
+            port        = value;
+            _ipEndPoint = new IPEndPoint(IPAddress.Parse(address), port);
+        }
+    }
+
 public IPEndPoint IPEndPoint => _ipEndPoint ??= new IPEndPoint(IPAddress.Parse(address), port);
 ```
