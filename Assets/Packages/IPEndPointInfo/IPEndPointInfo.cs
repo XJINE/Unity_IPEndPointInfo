@@ -5,16 +5,10 @@ using UnityEngine;
 [Serializable]
 public class IPEndPointInfo
 {
-    #region Field
-
     public static readonly IPAddress LocalhostAddress = IPAddress.Parse("127.0.0.1");
 
     [SerializeField] private string address;
     [SerializeField] private int    port;
-
-    #endregion Field
-
-    #region Property
 
     private IPEndPoint _ipEndPoint;
     private IPEndPoint _ipEndPointLocalhost;
@@ -28,6 +22,7 @@ public class IPEndPointInfo
             _ipEndPoint = new IPEndPoint(IPAddress.Parse(address), port);
         }
     }
+
     public int Port
     {
         get => port;
@@ -42,16 +37,11 @@ public class IPEndPointInfo
     public IPEndPoint IPEndPoint          => _ipEndPoint          ??= new IPEndPoint(IPAddress.Parse(address), port);
     public IPEndPoint IPEndPointLocalhost => _ipEndPointLocalhost ??= new IPEndPoint(LocalhostAddress,         port);
 
-    public string HttpUrl  => $"http://{ Address }:{ Port }/";
-    public string HttpsUrl => $"https://{ Address }:{ Port }/";
-    public string WsUrl    => $"ws://{ Address }:{ Port }/";
-    public string WssUrl   => $"wss://{ Address }:{ Port }/";
-
-    #endregion Property
-
-    #region Constructor
-
-    public IPEndPointInfo() { }
+    public  string HttpUrl   => $"http://{ CommonUrl }/";
+    public  string HttpsUrl  => $"https://{ CommonUrl }/";
+    public  string WsUrl     => $"ws://{ CommonUrl }/";
+    public  string WssUrl    => $"wss://{ CommonUrl }/";
+    private string CommonUrl => $"{ address }:{ port }";
 
     public IPEndPointInfo(string address, int port)
     {
@@ -59,5 +49,8 @@ public class IPEndPointInfo
         this.port    = port;
     }
 
-    #endregion Constructor
+    public override string ToString()
+    {
+        return CommonUrl;
+    }
 }
